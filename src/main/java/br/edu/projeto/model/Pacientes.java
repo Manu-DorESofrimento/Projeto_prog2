@@ -13,9 +13,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.Date;
+
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -59,12 +63,6 @@ public class Pacientes {
     @NotEmpty(message = "Não pode ser vazio")
     private String Telefone;
     
-    @NotNull
-    @NotEmpty
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Temporal(TemporalType.DATE)
-    private String Data_nascimento;
-    
     @Pattern(regexp = "[^0-9]*", message = "O nome não pode conter digitos.")
     private String Med_solicit;
     
@@ -73,6 +71,11 @@ public class Pacientes {
     private String Hist_doencas;
 
     private String Cirurgias_reali;
+    
+    @NotNull
+    @NotEmpty
+    @Temporal(TemporalType.DATE)
+    private String Data_nascimento;
 
 	public Integer getId() {
 		return id;

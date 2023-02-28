@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -35,16 +37,14 @@ public class Agenda {
     
     @NotNull
     @NotEmpty
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     private String Data;
     
     @NotNull
     @NotEmpty
-    @Currency("BRL")
     private String Pagamento;
     
-    @Type(type= "org.hibernate.type.NumericBooleanType")
+    
     @NotNull
     private Boolean Controle;
     
