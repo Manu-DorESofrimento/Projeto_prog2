@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    JBoss, Home of Professional Open Source
+    Copyright 2013, Red Hat, Inc. and/or its affiliates, and individual
+    contributors by the @authors tag. See the copyright.txt in the
+    distribution for a full listing of individual contributors.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    template="/WEB-INF/templates/default.xhtml">
+    <ui:define name="content">
+        <h1>Clínica</h1>
+        
+
+       
+
+        <h:form id="reg">
+            <h2>Registro de pacientes</h2>
+           
+            <h:panelGrid columns="3" columnClasses="titleCell">
+                <h:outputLabel for="name" value="Nome:" />
+                <h:inputText id="name" value="#{pacienteController.novoPaciente.nome}" />
+                <h:message for="name" errorClass="invalid" />
+                
+                <h:outputLabel for="cpf" value="CPF:" />
+                <h:inputText id="cpf" value="#{pacienteController.novoPaciente.cpf}" />
+                <h:message for="cpf" errorClass="invalid" />
+                
+                <h:outputLabel for="rg" value="RG:" />
+                <h:inputText id="rg" value="#{pacienteController.novoPaciente.rg}" />
+                <h:message for="rg" errorClass="invalid" />
+
+                <h:outputLabel for="telefone" value="Telefone:" />
+                <h:inputText id="telefone" value="#{pacienteController.novoPaciente.telefone}" />
+                <h:message for="telefone" errorClass="invalid" />
+				
+				<h:outputLabel for="endereco" value="Endereço:" />
+                <h:inputText id="endereco" value="#{pacienteController.novoPaciente.endereco}" />
+                <h:message for="endereco" errorClass="invalid" />
+                
+                <h:outputLabel for="data_nascimento" value="Data de nascimento:" />
+                <h:inputText id="data_nascimento" pattern="\d{2}-\d{2}-\d{4}" value="#{pacienteController.novoPaciente.data_nascimento}" />
+                <h:message for="data_nascimento" errorClass="invalid" />
+                
+                <h:outputLabel for="med_solicitante" value="Médico solicitante:" />
+                <h:inputText id="med_solicitante" value="#{pacienteController.novoPaciente.med_solicitante}" />
+                <h:message for="med_solicitante" errorClass="invalid" />
+                
+                <h:outputLabel for="diagnostico_prev" value="Diagnostico prévio:" />
+                <h:inputText id="diagnostico_prev" value="#{pacienteController.novoPaciente.diagnostico_prev}" />
+                <h:message for="diagnostico_prev" errorClass="invalid" />
+
+				<h:outputLabel for="cirurgias_realizadas" value="Cirurgias realizadas:" />
+                <h:inputText id="cirurgias_realizadas" value="#{pacienteController.novoPaciente.cirurgias_realizadas}" />
+                <h:message for="cirurgias_realizadas" errorClass="invalid" />
+                
+                <h:outputLabel for="historico_doencas" value="Historico de doenças:" />
+                <h:inputText id="historico_doencas" value="#{pacienteController.novoPaciente.historico_doencas}" />
+                <h:message for="historico_doencas" errorClass="invalid" />
+  
+				
+            </h:panelGrid>
+
+            <p>
+                <h:panelGrid columns="2">
+                    <h:commandButton id="register"
+                        action="#{pacienteController.register}"
+                        value="Concluir Cadastro" styleClass="register" />
+                    <h:messages styleClass="messages"
+                        errorClass="invalid" infoClass="valid"
+                        warnClass="warning" globalOnly="true" />
+                </h:panelGrid>
+            </p>
+        </h:form>
+         
+        <h2>Pacientes</h2>
+        <h:panelGroup rendered="#{empty pacienteController.listaPacientes}">
+            <em>Sem pacientes registrados</em>
+        </h:panelGroup>
+        <h:dataTable var="paciente" value="#{pacienteController.listaPacientes}"
+            rendered="#{not empty pacienteController.listaPacientes}"
+            styleClass="simpletablestyle">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                #{paciente.id_paciente}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nome</f:facet>
+                #{paciente.nome}
+            </h:column>
+            <h:column>
+                <f:facet name="header">CPF</f:facet>
+                #{paciente.cpf}
+            </h:column>
+            <h:column>
+                <f:facet name="header">RG</f:facet>
+                #{paciente.rg}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Telefone</f:facet>
+                #{paciente.telefone}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Endereço</f:facet>
+                #{paciente.endereco}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Data de nascimento</f:facet>
+                #{paciente.data_nascimento}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Medico Solicitante</f:facet>
+                #{paciente.med_solicitante}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Diagnóstico prévio</f:facet>
+                #{paciente.diagnostico_prev}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Cirurgias realizadas</f:facet>
+                #{paciente.cirurgias_realizadas}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Histórico de doenças</f:facet>
+                #{paciente.historico_doencas}
+            </h:column>
+       	</h:dataTable>
+        
+    </ui:define>
+</ui:composition>
